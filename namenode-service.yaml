@@ -1,0 +1,81 @@
+apiVersion: v1
+kind: Service
+metadata:
+  creationTimestamp: "2021-11-27T21:40:14Z"
+  finalizers:
+  - service.kubernetes.io/load-balancer-cleanup
+  labels:
+    app: namenode
+  managedFields:
+  - apiVersion: v1
+    fieldsType: FieldsV1
+    fieldsV1:
+      f:metadata:
+        f:labels:
+          .: {}
+          f:app: {}
+      f:spec:
+        f:externalTrafficPolicy: {}
+        f:ports:
+          .: {}
+          k:{"port":9000,"protocol":"TCP"}:
+            .: {}
+            f:name: {}
+            f:port: {}
+            f:protocol: {}
+            f:targetPort: {}
+          k:{"port":9870,"protocol":"TCP"}:
+            .: {}
+            f:name: {}
+            f:port: {}
+            f:protocol: {}
+            f:targetPort: {}
+        f:selector:
+          .: {}
+          f:app: {}
+        f:sessionAffinity: {}
+        f:type: {}
+    manager: GoogleCloudConsole
+    operation: Update
+    time: "2021-11-27T21:40:14Z"
+  - apiVersion: v1
+    fieldsType: FieldsV1
+    fieldsV1:
+      f:metadata:
+        f:finalizers:
+          .: {}
+          v:"service.kubernetes.io/load-balancer-cleanup": {}
+      f:status:
+        f:loadBalancer:
+          f:ingress: {}
+    manager: kube-controller-manager
+    operation: Update
+    time: "2021-11-28T03:26:12Z"
+  name: namenode-service
+  namespace: default
+  resourceVersion: "1190106"
+  uid: e832616e-de78-432b-8611-c80f0c7aeac5
+spec:
+  clusterIP: 10.71.249.41
+  clusterIPs:
+  - 10.71.249.41
+  externalTrafficPolicy: Cluster
+  ports:
+  - name: 9870-to-9870-tcp
+    nodePort: 32106
+    port: 9870
+    protocol: TCP
+    targetPort: 9870
+  - name: 9000-to-9000-tcp
+    nodePort: 31640
+    port: 9000
+    protocol: TCP
+    targetPort: 9000
+  selector:
+    app: namenode
+  sessionAffinity: None
+  type: LoadBalancer
+status:
+  loadBalancer:
+    ingress:
+    - ip: 35.226.33.81
